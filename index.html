@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iofrm</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
+  <link rel="stylesheet" type="text/css" href="css/iofrm-style.css">
+  <link rel="stylesheet" type="text/css" href="css/iofrm-theme42.css">
+  <style>
+    .form-check-inline .form-check-label {
+      margin-left: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-body form-left">
+    <div class="iofrm-layout">
+      <div class="img-holder text-start">
+        <div class="bg"></div>
+        <div class="info-holder">
+          <img src="images/graphic15.svg" alt="">
+        </div>
+      </div>
+      <div class="form-holder">
+        <div class="form-content justify-content-end">
+          <div class="form-items">
+            <div class="website-logo-inside logo-normal">
+              <a href="index.html">
+                <div class="logo">
+                  <img class="logo-size" src="images/logo-yellow.svg" alt="">
+                </div>
+              </a>
+            </div>
+            <h3 class="font-md">Vai um prompt aí?</h3>
+            <p>O Puzzle foi criado especialmente para você que deseja obter materiais didáticos com a ajuda de Inteligência Artifical.</p>
+            <form id="meuFormulario"> 
+      
+              <input class="form-control" type="text" name="materia" id="materia" placeholder="Matéria" required>
+
+              <br/>
+
+              <select class="form-control" name="turma" id="turma" required>
+                <option value="">Selecione a Turma</option>
+                <option value="ensino fundamental">Ensino Fundamental</option>
+                <option value="ensino medio">Ensino Médio</option>
+                <option value="ensino superior">Ensino Superior</option>
+              </select>
+              <br/>
+              <div class="form-group">
+                <label for="perfil_turma">Descreva o perfil dos alunos:</label>
+                <textarea class="form-control" name="perfil_turma" id="perfil_turma" placeholder="Meus alunos são..." required></textarea>
+              </div>
+
+              <label for="objetivo_aula">Objetivo da aula:</label>
+              <textarea class="form-control" name="objetivo_aula" id="objetivo_aula" placeholder="Quero ensinar meus alunos sobre..." required></textarea>
+
+            <br/>
+              <select class="form-control" name="profundidade" id="profundidade" required>
+                <option value="">Selecione o Nível de Dificuldade</option>
+                <option value="introdutorio">Introdutório</option>
+                <option value="basico">Básico</option>
+                <option value="intermediario">Intermediário</option>
+                <option value="avancado">Avançado</option>
+              </select>
+              <br/>
+              <div class="row text-start">
+                <label>Descreva os tipos de materiais digitais que deseja buscar:</label>
+                <div class="col-md-6">
+                  <div class="form-check form-check-inline mb-2"> 
+                    <input class="form-check-input" type="checkbox" name="material_digital" value="animacoes" id="animacoes">
+                    <label class="form-check-label d-block text-start" for="animacoes">Animações</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-2">
+                    <input class="form-check-input" type="checkbox" name="material_digital" value="arquivos" id="arquivos">
+                    <label class="form-check-label d-block text-start" for="arquivos">Arquivos</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-2">
+                    <input class="form-check-input" type="checkbox" name="material_digital" value="imagem" id="imagem">
+                    <label class="form-check-label d-block text-start" for="imagem">Imagem</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-2">
+                    <input class="form-check-input" type="checkbox" name="material_digital" value="jogos" id="jogos">
+                    <label class="form-check-label d-block text-start" for="jogos">Jogos</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-2">
+                    <input class="form-check-input" type="checkbox" name="material_digital" value="musica" id="musica">
+                    <label class="form-check-label d-block text-start" for="musica">Música</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-check form-check-inline mb-2">
+                    <input class="form-check-input" type="checkbox" name="material_digital" value="podcast" id="podcast">
+                    <label class="form-check-label d-block text-start" for="podcast">Podcast</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-2">
+                    <input class="form-check-input" type="checkbox" name="material_digital" value="sites" id="sites">
+                    <label class="form-check-label d-block text-start" for="sites">Sites</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-2">
+                    <input class="form-check-input" type="checkbox" name="material_digital" value="softwares" id="softwares">
+                    <label class="form-check-label d-block text-start" for="softwares">Softwares</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-2">
+                    <input class="form-check-input" type="checkbox" name="material_digital" value="texto" id="texto">
+                    <label class="form-check-label d-block text-start" for="texto">Texto</label>
+                  </div>
+                  <div class="form-check form-check-inline mb-2">
+                    <input class="form-check-input" type="checkbox" name="material_digital" value="video" id="video">
+                    <label class="form-check-label d-block text-start" for="video">Vídeo</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-button d-flex">
+                <button id="submit" type="submit" class="btn btn-primary">Gerar</button>
+              </div>
+            </form>
+            <div id="prompt-container"></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script> 
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("meuFormulario").addEventListener("submit", function(event) {
+        event.preventDefault(); // Evita o recarregamento da página
+
+        // Check if at least one checkbox is selected
+        if (document.querySelectorAll('input[name="material_digital"]:checked').length === 0) {
+          alert("Por favor, selecione pelo menos um tipo de material digital.");
+          event.preventDefault(); // Prevent form submission
+          return; // Stop further execution
+        }
+
+        // 1. Coletar informações do formulário
+        var materia = document.querySelector('input[name="materia"]').value;
+        var turma = document.querySelector('select[name="turma"]').value.replaceAll('_', ' '); // Substitui "_" por " "
+        var perfilTurma = document.querySelector('textarea[name="perfil_turma"]').value;
+        var objetivoAula = document.querySelector('textarea[name="objetivo_aula"]').value;
+        var profundidade = document.querySelector('select[name="profundidade"]').value;
+        
+        // Coletar os checkboxes marcados corretamente
+        var materiaisDigitais = Array.from(document.querySelectorAll('input[name="material_digital"]:checked'))
+                                     .map(checkbox => checkbox.value)
+                                     .join(', ');
+
+        // 2. Construir o prompt concatenado
+        var promptText = `Eu sou um professor de ${materia} do ${turma}. Meus alunos são ${perfilTurma} e tenho o objetivo de ensinar sobre ${objetivoAula} em um nível ${profundidade}. Crie uma lista de Objetos de Aprendizagem Digitais para eu utilizar em minhas aulas, estes objetos devem ser ${materiaisDigitais}. Busque apenas fontes reais e brasileiras e crie uma lista com as melhores opções contendo links.`;
+       
+        // 3. Construir os links formatados corretamente
+        var promptLinkChatGPT = `https://chat.openai.com/?prompt=` + encodeURIComponent(promptText);
+        var promptLinkGemini = `https://gemini.google.com/search?q=` + encodeURIComponent(promptText); 
+
+        // 4. Armazenar as informações no localStorage
+        localStorage.setItem('promptText', promptText);
+        localStorage.setItem('promptLinkChatGPT', promptLinkChatGPT);
+        localStorage.setItem('promptLinkGemini', promptLinkGemini);
+
+        // 5. Redirecionar para a segunda página
+        window.location.href = 'segunda_pagina.html';
+      });
+    });
+  </script>
+</body>
+</html>
