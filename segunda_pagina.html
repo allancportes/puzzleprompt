@@ -1,70 +1,96 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prompt Gerado</title>
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
-  <link rel="stylesheet" type="text/css" href="css/iofrm-style.css">
-  <link rel="stylesheet" type="text/css" href="css/iofrm-theme42.css">
-  <style>
-    .form-check-inline .form-check-label {
-      margin-left: 0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Gerado</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/iofrm-style.css">
+    <link rel="stylesheet" type="text/css" href="css/iofrm-theme42.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .form-check-inline .form-check-label {
+            margin-left: 0;
+        }
+
+        .back-to-index {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+        }
+
+        .back-to-index i {
+            color: #FFC801;
+            font-size: 25px; /* Aumenta o tamanho da seta para 25px */
+        }
+
+        .website-logo-inside {
+            position: relative;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="form-body form-left">
-    <div class="iofrm-layout">
-      <div class="img-holder text-start">
-        <div class="bg"></div>
-        <div class="info-holder">
-          <img src="images/graphic15.svg" alt="">
-        </div>
-      </div>
-      <div class="form-holder">
-        <div class="form-content justify-content-end">
-          <div class="form-items">
-            <div class="website-logo-inside logo-normal">
-              <a href="index.html">
-                <div class="logo">
-                  <img class="logo-size" src="images/logo-yellow.svg" alt="">
+
+    <div class="form-body form-left">
+        <div class="iofrm-layout">
+            <div class="img-holder text-start">
+                <div class="bg"></div>
+                <div class="info-holder">
+                    <img src="images/graphic15.svg" alt="">
                 </div>
-              </a>
             </div>
-            <h3 class="font-md">Promptinho!</h3>
-            <div id="prompt-container" class="mt-3"></div>
-            <div class="form-button d-grid gap-2 d-md-flex mt-4">
-              <button id="copyButton" class="btn btn-primary">Copiar</button>
-              <a href="#" id="geminiButton" class="btn btn-info" target="_blank">Gemini</a>
-              <a href="#" id="chatgptButton" class="btn btn-secondary" target="_blank">ChatGPT</a>
+            <div class="form-holder">
+                <div class="form-content justify-content-end">
+                    <div class="form-items">
+                        <div class="website-logo-inside logo-normal">
+                            <a href="index.html">
+                                <div class="logo">
+                                    <img class="logo-size" src="images/logo-yellow.svg" alt="">
+                                </div>
+                            </a>
+                            <a href="index.html" class="back-to-index">
+                                <i class="fas fa-arrow-left"></i>
+                            </a>
+                        </div>
+                        <h3 class="font-md">Promptinho!</h3>
+                        <div id="prompt-container" class="mt-3"></div>
+                        <div class="form-button d-grid gap-2 d-md-flex mt-4">
+                            <button id="copyButton" class="btn btn-primary">Copiar</button>
+                            <a href="#" id="geminiButton" class="btn btn-info" target="_blank">Gemini</a>
+                            <a href="#" id="chatgptButton" class="btn btn-secondary" target="_blank">ChatGPT</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <script>
-    // 1. Obter as informações do localStorage
-    var promptText = localStorage.getItem('promptText');
-    var promptLinkChatGPT = localStorage.getItem('promptLinkChatGPT');
-    var promptLinkGemini = localStorage.getItem('promptLinkGemini');
+    <script>
+        // 1. Obter as informações do localStorage
+        var promptText = localStorage.getItem('promptText');
+        var promptLinkChatGPT = localStorage.getItem('promptLinkChatGPT');
+        var promptLinkGemini = localStorage.getItem('promptLinkGemini');
 
-    // 2. Exibir o prompt concatenado
-    document.getElementById('prompt-container').innerText = promptText;
+        // 2. Exibir o prompt concatenado
+        document.getElementById('prompt-container').innerText = promptText;
 
-    // 3. Configurar os links dos botões
-    document.getElementById('chatgptButton').href = promptLinkChatGPT;
-    document.getElementById('geminiButton').href = promptLinkGemini;
+        // 3. Configurar os links dos botões
+        document.getElementById('chatgptButton').href = promptLinkChatGPT;
+        document.getElementById('geminiButton').href = promptLinkGemini;
 
-    // 4. Adicionar evento de copiar texto ao botão
-    document.getElementById('copyButton').addEventListener('click', function() {
-      navigator.clipboard.writeText(promptText)
-        .then(() => alert('Texto copiado para a área de transferência!'))
-        .catch(err => console.error('Falha ao copiar texto: ', err));
-    });
-  </script>
+        // 4. Adicionar evento de copiar texto ao botão
+        document.getElementById('copyButton').addEventListener('click', function () {
+            navigator.clipboard.writeText(promptText)
+                .then(() => alert('Texto copiado para a área de transferência!'))
+                .catch(err => console.error('Falha ao copiar texto: ', err));
+        });
+    </script>
 </body>
+
 </html>
