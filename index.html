@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="css/iofrm-style.css">
   <link rel="stylesheet" type="text/css" href="css/iofrm-theme42.css">
   <style>
-    .form-check-inline .form-check-label {
+  .form-check-inline.form-check-label {
       margin-left: 0;
     }
   </style>
@@ -36,7 +36,12 @@
             <h3 class="font-md">Vai um prompt aí?</h3>
             <p>O Puzzle foi criado especialmente para você que deseja obter materiais didáticos com a ajuda de Inteligência Artifical.</p>
             <form id="meuFormulario"> 
-      
+              <select class="form-control" name="tipo_prompt" id="tipo_prompt" required>
+                <option value="">Selecione o Tipo de Prompt</option>
+                <option value="materiais_digitais">Materiais Digitais</option>
+                <option value="plano_aula">Plano de Aula</option>
+              </select>
+              <br/>
               <input class="form-control" type="text" name="materia" id="materia" placeholder="Matéria" required>
 
               <br/>
@@ -143,6 +148,7 @@
         }
 
         // 1. Coletar informações do formulário
+        var tipoPrompt = document.getElementById('tipo_prompt').value;
         var materia = document.querySelector('input[name="materia"]').value;
         var turma = document.querySelector('select[name="turma"]').value.replaceAll('_', ' '); // Substitui "_" por " "
         var perfilTurma = document.querySelector('textarea[name="perfil_turma"]').value;
@@ -151,12 +157,26 @@
         
         // Coletar os checkboxes marcados corretamente
         var materiaisDigitais = Array.from(document.querySelectorAll('input[name="material_digital"]:checked'))
-                                     .map(checkbox => checkbox.value)
-                                     .join(', ');
+                                   .map(checkbox => checkbox.value)
+                                   .join(', ');
 
-        // 2. Construir o prompt concatenado
-        var promptText = `Eu sou um professor de ${materia} do ${turma}. Meus alunos são ${perfilTurma} e tenho o objetivo de ensinar sobre ${objetivoAula} em um nível ${profundidade}. Crie uma lista de Objetos de Aprendizagem Digitais para eu utilizar em minhas aulas, estes objetos devem ser ${materiaisDigitais}. Busque apenas fontes reais e brasileiras e crie uma lista com as melhores opções contendo links.`;
-       
+        // 2. Construir o prompt com base no tipo selecionado
+        var promptText = '';
+        if (tipoPrompt === 'materiais_digitais') {
+          promptText = `Eu sou um professor de ${materia} do ${turma}. Meus alunos são ${perfilTurma} e tenho o objetivo de ensinar sobre ${objetivoAula} em um nível ${profundidade}. Crie uma lista de Objetos de Aprendizagem Digitais para eu utilizar em minhas aulas, estes objetos devem ser ${materiaisDigitais}. Busque apenas fontes reais e brasileiras e crie uma lista com as melhores opções contendo links.`;
+        } else if (tipoPrompt === 'plano_aula') {
+          promptText = `Eu sou um professor de ${materia} do ${turma}. Meus alunos são ${perfilTurma} e tenho o objetivo de ensinar sobre ${objetivoAula} em um nível ${profundidade}.
+
+Baseado nessas informações, crie um plano de aula contendo:
+
+1. objetivos específicos, ementa, conteúdo pragmático, metodologia de ensino, formas de avaliação e sugira bibliografia básica e complementar mais utilizadas nesta matéria. 
+2. Crie uma lista de Objetos de Aprendizagem Digitais para eu utilizar em minhas aulas, estes objetos devem ser ${materiaisDigitais}. Busque apenas fontes reais, existentes (não crie nenhuma nova fonte) e brasileiras e crie uma lista com as melhores opções contendo links.
+3. Crie um sistema de gamificação para ser aplicado nessa matéria baseado em um sistema de três pódios (ouro, prata e bronze). Sugira para cada um, de 1 a 3 requisitos e 1 a 3 recompensas que devem ser cumulativos entre níveis, oferecer progressão e ser semelhantes entre níveis. Alguns exemplos incluem: acréscimo de pontos, cupons, algum produto ou serviço, formas de destaque e reconhecimento, etc…`;
+        } else {
+          alert("Por favor, selecione um tipo de prompt.");
+          return;
+        }
+
         // 3. Construir os links formatados corretamente
         var promptLinkChatGPT = `https://chat.openai.com/?prompt=` + encodeURIComponent(promptText);
         var promptLinkGemini = `https://gemini.google.com/search?q=` + encodeURIComponent(promptText); 
